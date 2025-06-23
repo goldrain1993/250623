@@ -1,0 +1,221 @@
+/* 공통 스타일 */
+body {
+  margin: 0;
+  font-family: 'Noto Sans KR', sans-serif;
+  background: #f5f6fa;
+}
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 180px;
+  height: 100vh;
+  background: #273c75;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding-top: 40px;
+}
+.sidebar a {
+  color: #fff;
+  text-decoration: none;
+  padding: 16px 24px;
+  font-size: 18px;
+  transition: background 0.2s;
+}
+.sidebar a:hover {
+  background: #40739e;
+}
+.main {
+  margin-left: 200px;
+  padding: 40px;
+}
+button {
+  background: #40739e;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 8px 0;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+button:hover {
+  background: #273c75;
+}
+input, select, textarea {
+  padding: 8px;
+  margin: 6px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+form {
+  margin-top: 20px;
+}
+.board-list {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 0;
+  margin-bottom: 32px;
+  min-height: 440px;
+}
+.board-list ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.board-list li {
+  border-bottom: 1px solid #eee;
+  padding: 18px 24px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.board-list li:hover {
+  background: #f1f2f6;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+.pagination button {
+  background: #fff;
+  color: #273c75;
+  border: 1px solid #40739e;
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.pagination button.active {
+  background: #40739e;
+  color: #fff;
+}
+.write-btn {
+  position: fixed;
+  right: 48px;
+  bottom: 48px;
+  background: #273c75;
+  color: #fff;
+  border-radius: 8px;
+  width: auto;
+  height: auto;
+  font-size: 1.2em;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  z-index: 100;
+  border: none;
+  letter-spacing: 1px;
+  text-shadow: none;
+  padding: 10px 20px;
+  min-width: 120px;
+  min-height: 48px;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.write-btn:hover {
+  background: #fbc531;
+  color: #273c75;
+  box-shadow: 0 4px 16px rgba(39,60,117,0.18);
+}
+.board-form {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 24px;
+  position: fixed;
+  right: 48px;
+  bottom: 120px;
+  width: 340px;
+  z-index: 101;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.board-form input, .board-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+.board-form button {
+  width: 100px;
+  margin-right: 8px;
+}
+.site-title {
+  font-size: 2.2em;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 32px;
+  margin-top: 12px;
+  color: #fff;
+  letter-spacing: 1px;
+  line-height: 1.1;
+}
+.site-title-main {
+  font-family: 'Nanum Gothic', 'Noto Sans KR', sans-serif;
+  font-size: 1.1em;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #fff;
+  text-shadow: 1px 2px 6px #273c75;
+}
+.site-title-sub {
+  font-family: 'Nanum Gothic', 'Noto Sans KR', sans-serif;
+  font-size: 1em;
+  font-weight: 700;
+  color: #fbc531;
+  letter-spacing: 2px;
+  text-shadow: 1px 2px 6px #273c75;
+}
+.main-title {
+  font-size: 4em;
+  font-weight: 900;
+  text-align: center;
+  margin: 60px 0 60px 0;
+  color: #273c75;
+  letter-spacing: 3px;
+  font-family: 'Nanum Gothic', 'Noto Sans KR', sans-serif;
+  text-shadow: 2px 4px 12px #dcdde1;
+  line-height: 1.1;
+}
+.role-btns {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin-top: 60px;
+}
+.role-btn {
+  font-size: 3em;
+  padding: 32px 64px;
+  border-radius: 16px;
+  min-width: 220px;
+  min-height: 90px;
+}
+.back-btn {
+  position: absolute;
+  left: 220px;
+  top: 24px;
+  background: none;
+  color: #273c75;
+  border: none;
+  font-size: 1.4em;
+  font-weight: bold;
+  padding: 8px 24px 8px 0;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  margin-bottom: 8px;
+  transition: background 0.2s;
+  z-index: 100;
+}
+.back-btn:hover {
+  background: #dcdde1;
+}
+@media (max-width: 900px) {
+  .main-title { font-size: 2em; }
+  .role-btn { font-size: 1.5em; padding: 16px 24px; }
+  .site-title { font-size: 1.2em; }
+  .back-btn { left: 0; top: 0; }
+}

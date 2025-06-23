@@ -1,0 +1,30 @@
+<!-- 문의사항 게시판 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>문의사항 게시판</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="sidebar">
+    <div class="site-title"><span class="site-title-main">수행평가</span><br><span class="site-title-sub">바로확인</span></div>
+    <a href="index.html">처음으로</a>
+    <a href="board.html">문의사항 게시판</a>
+  </div>
+  <div class="main">
+    <button class="back-btn" onclick="history.back()">← 뒤로가기</button>
+    <h1>문의사항 게시판</h1>
+    <div id="board-list" class="board-list"></div>
+    <div class="pagination" id="pagination"></div>
+    <button id="write-btn" class="write-btn">글쓰기</button>
+    <form id="board-form" style="display:none;" class="board-form">
+      <input type="text" name="title" placeholder="제목" required>
+      <textarea name="content" placeholder="내용" required></textarea>
+      <button type="submit">등록</button>
+      <button type="button" id="cancel-btn">취소</button>
+    </form>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

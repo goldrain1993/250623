@@ -1,0 +1,27 @@
+<!-- 교사 로그인 페이지 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>교사 로그인</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="sidebar">
+    <div class="site-title"><span class="site-title-main">수행평가</span><br><span class="site-title-sub">바로확인</span></div>
+    <a href="index.html">처음으로</a>
+    <a href="board.html">문의사항 게시판</a>
+  </div>
+  <div class="main">
+    <button class="back-btn" onclick="history.back()">← 뒤로가기</button>
+    <h1>교사 로그인</h1>
+    <form id="teacher-login-form" style="display:inline-block; vertical-align:middle;">
+      <label>ID: <input type="text" name="id" required></label><br>
+      <label>비밀번호: <input type="password" name="password" required></label><br>
+      <button type="submit" style="display:inline-block; width:120px;">로그인</button>
+    </form>
+    <button onclick="location.href='teacher_signup.html'" style="display:inline-block; width:120px; margin-left:16px; vertical-align:middle;">회원가입</button>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
