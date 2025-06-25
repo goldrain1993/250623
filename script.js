@@ -2,15 +2,59 @@
 
 // 예시: 폼 제출 방지 및 안내
 if (document.getElementById('teacher-signup-form')) {
-  document.getElementById('teacher-signup-form').onsubmit = function(e) {
+  document.getElementById('teacher-signup-form').onsubmit = async function(e) {
     e.preventDefault();
-    alert('회원가입 기능은 추후 구현됩니다.');
+    const id = this.id.value.trim();
+    const name = this.name.value.trim();
+    const password = this.password.value.trim();
+    if (!id || !name || !password) {
+      alert('모든 항목을 입력하세요.');
+      return;
+    }
+    try {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbzOtdE0_jFDTRSzxTXWRlKC9EyOVPBVg2110p6yr0Qt8pKG7CP3oDI2_77aEdaPdwNUzg/exec', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, name, password })
+      });
+      const result = await response.json();
+      if (result.success) {
+        alert('회원가입이 완료되었습니다!');
+        window.location.href = 'teacher_login.html';
+      } else {
+        alert(result.message || '회원가입 실패');
+      }
+    } catch (err) {
+      alert('서버 오류: ' + err);
+    }
   };
 }
 if (document.getElementById('teacher-login-form')) {
-  document.getElementById('teacher-login-form').onsubmit = function(e) {
+  document.getElementById('teacher-login-form').onsubmit = async function(e) {
     e.preventDefault();
-    alert('로그인 기능은 추후 구현됩니다.');
+    const id = this.id.value.trim();
+    const password = this.password.value.trim();
+    if (!id || !password) {
+      alert('ID와 비밀번호를 입력하세요.');
+      return;
+    }
+    try {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbzOtdE0_jFDTRSzxTXWRlKC9EyOVPBVg2110p6yr0Qt8pKG7CP3oDI2_77aEdaPdwNUzg/exec', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ mode: 'login', id, password })
+      });
+      const result = await response.json();
+      if (result.success) {
+        alert('로그인 성공! ' + (result.name ? result.name + '님 환영합니다.' : ''));
+        localStorage.setItem('teacherName', result.name || '');
+        window.location.href = 'teacher_dashboard.html';
+      } else {
+        alert(result.message || '로그인 실패');
+      }
+    } catch (err) {
+      alert('서버 오류: ' + err);
+    }
   };
 }
 if (document.getElementById('student-login-form')) {
@@ -64,7 +108,8 @@ function renderBoard(page = 1) {
     html += '<li>게시글이 없습니다.</li>';
   } else {
     pagePosts.forEach((post, idx) => {
-      html += `<li>${start + idx + 1}. ${post.title}</li>`;
+      const postIdx = start + idx;
+      html += `<li onclick="window.location='board_view.html?idx=${postIdx}'" style='cursor:pointer;'><strong>${post.title}</strong><br><span style='font-size:0.9em;color:#888;'>${new Date(post.date).toLocaleString()}</span></li>`;
     });
   }
   html += '</ul>';
@@ -80,31 +125,16 @@ function renderBoard(page = 1) {
 if (document.getElementById('board-list')) {
   renderBoard();
 }
-
-// 글쓰기 버튼 및 폼
-if (document.getElementById('write-btn')) {
-  const writeBtn = document.getElementById('write-btn');
-  const boardForm = document.getElementById('board-form');
-  const cancelBtn = document.getElementById('cancel-btn');
-  writeBtn.onclick = () => {
-    boardForm.style.display = 'flex';
-    writeBtn.style.display = 'none';
-  };
-  cancelBtn.onclick = () => {
-    boardForm.style.display = 'none';
-    writeBtn.style.display = 'block';
-  };
-  boardForm.onsubmit = function(e) {
+if (document.getElementById('board-write-form')) {
+  document.getElementById('board-write-form').onsubmit = function(e) {
     e.preventDefault();
-    const title = boardForm.title.value.trim();
-    const content = boardForm.content.value.trim();
+    const title = document.getElementById('write-title').value.trim();
+    const content = document.getElementById('write-content').value.trim();
     if (!title || !content) return;
-    const posts = getPosts();
+    const posts = JSON.parse(localStorage.getItem('board-posts') || '[]');
     posts.unshift({ title, content, date: new Date().toISOString() });
-    setPosts(posts);
-    boardForm.reset();
-    boardForm.style.display = 'none';
-    writeBtn.style.display = 'block';
-    renderBoard(1);
+    localStorage.setItem('board-posts', JSON.stringify(posts));
+    alert('작성되었습니다.');
+    window.location.href = 'board.html';
   };
 }

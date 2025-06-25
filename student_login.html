@@ -12,15 +12,29 @@
     <a href="index.html">처음으로</a>
     <a href="board.html">문의사항 게시판</a>
   </div>
+  <button class="back-btn" onclick="history.back()">← 뒤로가기</button>
   <div class="main">
-    <button class="back-btn" onclick="history.back()">← 뒤로가기</button>
     <h1>학생 로그인</h1>
     <form id="student-login-form">
-      <label>학년: <input type="number" name="grade" min="1" max="3" required></label><br>
-      <label>반: <input type="number" name="class" min="1" max="10" required></label><br>
-      <label>이름: <input type="text" name="name" required></label><br>
-      <label>비밀번호: <input type="password" name="password" required></label><br>
-      <button type="submit">로그인</button>
+      <div class="form-row">
+        <label for="student-grade">학년</label>
+        <input id="student-grade" type="number" name="grade" min="1" max="3" required>
+      </div>
+      <div class="form-row">
+        <label for="student-class">반</label>
+        <input id="student-class" type="number" name="class" min="1" max="10" required>
+      </div>
+      <div class="form-row">
+        <label for="student-name">이름</label>
+        <input id="student-name" type="text" name="name" required>
+      </div>
+      <div class="form-row">
+        <label for="student-password">비밀번호</label>
+        <input id="student-password" type="password" name="password" required>
+      </div>
+      <div class="form-row form-row-btns form-row-btns-right">
+        <button type="submit">로그인</button>
+      </div>
     </form>
   </div>
   <script src="script.js"></script>

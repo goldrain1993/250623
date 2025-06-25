@@ -1,0 +1,45 @@
+<!-- 게시글 상세 페이지 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>게시글 보기</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button class="back-btn" onclick="history.back()">← 뒤로가기</button>
+  <div class="board-outer">
+    <div class="sidebar">
+      <div class="site-title"><span class="site-title-main">수행평가</span><br><span class="site-title-sub">바로확인</span></div>
+      <a href="index.html">처음으로</a>
+      <a href="board.html">문의사항 게시판</a>
+    </div>
+    <div class="main board-main-separate">
+      <h1 id="view-title">제목</h1>
+      <div id="view-date" style="color:#888; font-size:0.95em; margin-bottom:24px;"></div>
+      <div id="view-content" style="font-size:1.2em; min-height:200px; white-space:pre-line;"></div>
+      <div class="form-row form-row-btns form-row-btns-right" style="margin-top:40px;">
+        <button type="button" onclick="location.href='board.html'">목록</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    // 게시글 데이터 표시
+    function getQueryParam(name) {
+      const url = new URL(window.location.href);
+      return url.searchParams.get(name);
+    }
+    const idx = parseInt(getQueryParam('idx'), 10);
+    const posts = JSON.parse(localStorage.getItem('board-posts') || '[]');
+    if (!isNaN(idx) && posts[idx]) {
+      document.getElementById('view-title').textContent = posts[idx].title;
+      document.getElementById('view-date').textContent = new Date(posts[idx].date).toLocaleString();
+      document.getElementById('view-content').textContent = posts[idx].content;
+    } else {
+      document.getElementById('view-title').textContent = '존재하지 않는 게시글입니다.';
+      document.getElementById('view-content').textContent = '';
+      document.getElementById('view-date').textContent = '';
+    }
+  </script>
+</body>
+</html>
