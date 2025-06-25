@@ -1,4 +1,4 @@
-export default function handler(req, res) {
+export default async function handler(req, res) {
   // CORS preflight 처리
   if (req.method === 'OPTIONS') {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -12,8 +12,8 @@ export default function handler(req, res) {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   if (req.method === 'POST') {
-    // 기존 로직
-    const { id, name, password } = req.body;
+    // body 파싱
+    const { id, name, password } = await req.json();
     res.status(200).json({ success: true, id, name });
   } else {
     res.status(405).end();
