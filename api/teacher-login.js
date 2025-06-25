@@ -12,8 +12,10 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   if (req.method === 'POST') {
-    const { id, name, password } = await req.json();
-    res.status(200).json({ success: true, id, name });
+    const { id, password } = await req.json();
+    // 실제로는 DB/시트에서 id, password 확인해야 함
+    // 여기서는 임시로 무조건 성공 반환
+    res.status(200).json({ success: true, name: id });
   } else {
     res.status(405).end();
   }
